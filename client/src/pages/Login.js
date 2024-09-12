@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+// import regImage from "../images/Signup_page_image.png"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,6 +39,9 @@ const Login = () => {
         onFinish={onfinishHandler}
         className="register-form"
       >
+      {/* <div className="image-section">
+        <img src={regImage} alt="Register" />
+      </div> */}
         <h3 className="text-center">Login Form</h3>
 
         <Form.Item label="Email" name="email" rules={[{ required: true }]}>

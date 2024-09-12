@@ -4,7 +4,7 @@ import { adminMenu, userMenu } from "./../Data/data";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Badge, message } from "antd";
-import profileImage from '../images/doctor.png'
+import profileImage from '../images/profile.png'
 
 const Layout = ({ children }) => {
   const { user } = useSelector((state) => state.user);

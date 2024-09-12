@@ -5,6 +5,8 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
+import "../pages/Register.css";
+import regImage from '../images/Signup_page_image.png'
 
 const Register = () => {
   const navigate = useNavigate();
@@ -31,14 +33,15 @@ const Register = () => {
   };
 
   return (
-    <>
-      <div className="form-container">
-        <Form
-          layout="vertical"
-          onFinish={onfinishHandler}
-          className="register-form"
-        >
-          <h3 className="text-center">Register Form</h3>
+    
+    <div className="form-container">
+    <div className="form-wrapper">
+      <div className="image-section">
+        <img src={regImage} alt="Register" />
+      </div>
+      <div className="form-section">
+        <Form layout="vertical" onFinish={onfinishHandler} className="register-form">
+          <h3 className="text-center">Signup to <span>MediMap</span></h3>
           <Form.Item label="Name" name="name">
             <Input type="text" required />
           </Form.Item>
@@ -48,16 +51,6 @@ const Register = () => {
           <Form.Item label="Password" name="password">
             <Input type="password" required />
           </Form.Item>
-          {/* <Form.Item label="Age" name="age">
-            <Input type="number" required />
-          </Form.Item>
-          <Form.Item label="Sex" name="sex">
-            <Select required>
-              <Option value="male">Male</Option>
-              <Option value="female">Female</Option>
-              <Option value="other">Other</Option>
-            </Select>
-          </Form.Item> */}
           <Link to="/login" className="m-2">
             Already user? Login here
           </Link>
@@ -66,7 +59,9 @@ const Register = () => {
           </button>
         </Form>
       </div>
-    </>
+    </div>
+  </div>
+  
   );
 };
 

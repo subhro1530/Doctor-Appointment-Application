@@ -2,9 +2,9 @@ import React from "react";
 import { Form, Input, Button, message, Card } from "antd";
 import { useSelector } from "react-redux";
 import Layout from "./../components/Layout";
-
 import { database } from './firebaseConfig.js'; // Import the configured database
 import { ref, set } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js";
+import health_image from "../images/doctor-application.gif";
 import "./Vitality.css"; // Importing CSS file
 
 const Vitality = () => {
@@ -12,10 +12,12 @@ const Vitality = () => {
 
   const handleFinish = async (values) => {
     try {
-      const { chestPain, restingBP, bloodSugar, cholestrol, restingECG, angina } = values;
+      const { age, gender , chestPain, restingBP, bloodSugar, cholestrol, restingECG, angina } = values;
 
       // Save the data to Firebase
       await set(ref(database, `Sensor/${user?.name}`), {
+        age,
+        gender,
         chestPain,
         restingBP,
         bloodSugar,
@@ -33,10 +35,14 @@ const Vitality = () => {
 
   return (
     <Layout>
-    {/* <div className="container"> */}
       <Card className="vitality-card" hoverable>
-        <h2 className="vitality-title">Health Vitality Form</h2>
+        {/* <h2 className="vitality-title">Health Vitality Form</h2>
         <p className="vitality-subtitle">Please fill in your health data accurately</p>
+         */}
+        {/* Add image above the form for visual appeal */}
+        <div>
+          <img src={health_image} alt="Health Icon" className="health-icon" />
+        </div>
         <Form
           layout="vertical"
           onFinish={handleFinish}
@@ -47,11 +53,42 @@ const Vitality = () => {
             cholestrol: "",
             restingECG: "",
             angina: "",
+            age: "",
+            gender: "",
           }}
           className="vitality-form"
         >
+
+          {/* Age Input Field with image */}
           <div className="input-field">
-            <label htmlFor="chest_pain">Chest Pain:</label>
+            <label htmlFor="age">
+              Age:
+            </label>
+            <Form.Item name="age" rules={[{ required: true, message: "Please input your age" }]}>
+              <Input type="number" id="age" placeholder="Enter your age" />
+            </Form.Item>
+          </div>
+
+          {/* Gender Input Field with image */}
+          <div className="input-field">
+            <label htmlFor="gender">
+             Gender:
+            </label>
+            <Form.Item name="gender" rules={[{ required: true, message: "Please select your gender" }]}>
+              <select id="gender" required>
+                <option value="" disabled>Choose your option</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </Form.Item>
+          </div>
+
+          {/* Chest Pain Input Field with image */}
+          <div className="input-field">
+            <label htmlFor="chest_pain">
+              Chest Pain:
+            </label>
             <Form.Item name="chestPain" rules={[{ required: true }]}>
               <select id="chest_pain" required>
                 <option value="" disabled>Choose your option</option>
@@ -63,15 +100,21 @@ const Vitality = () => {
             </Form.Item>
           </div>
 
+          {/* Resting BP Input Field with image */}
           <div className="input-field">
-            <label htmlFor="resting_bp">Resting BP:</label>
+            <label htmlFor="resting_bp">
+              Resting BP:
+            </label>
             <Form.Item name="restingBP" rules={[{ required: true }]}>
               <Input type="text" id="resting_bp" placeholder="Enter resting BP" />
             </Form.Item>
           </div>
 
+          {/* Blood Sugar Input Field with image */}
           <div className="input-field">
-            <label htmlFor="Blood_Sugar">Blood Sugar:</label>
+            <label htmlFor="Blood_Sugar">
+              Blood Sugar:
+            </label>
             <Form.Item name="bloodSugar" rules={[{ required: true }]}>
               <select id="Blood_Sugar" required>
                 <option value="" disabled>Choose your option</option>
@@ -81,15 +124,21 @@ const Vitality = () => {
             </Form.Item>
           </div>
 
+          {/* Cholestrol Input Field with image */}
           <div className="input-field">
-            <label htmlFor="cholestrol">Cholestrol:</label>
+            <label htmlFor="cholestrol">
+              Cholestrol:
+            </label>
             <Form.Item name="cholestrol" rules={[{ required: true }]}>
               <Input type="text" id="cholestrol" placeholder="Enter cholesterol level" />
             </Form.Item>
           </div>
 
+          {/* Resting ECG Input Field with image */}
           <div className="input-field">
-            <label htmlFor="resting_ecg">Resting ECG:</label>
+            <label htmlFor="resting_ecg">
+              Resting ECG:
+            </label>
             <Form.Item name="restingECG" rules={[{ required: true }]}>
               <select id="resting_ecg" required>
                 <option value="" disabled>Choose your option</option>
@@ -99,8 +148,11 @@ const Vitality = () => {
             </Form.Item>
           </div>
 
+          {/* Angina Input Field with image */}
           <div className="input-field">
-            <label htmlFor="angina">Exercise Angina:</label>
+            <label htmlFor="angina">
+              Exercise Angina:
+            </label>
             <Form.Item name="angina" rules={[{ required: true }]}>
               <select id="angina" required>
                 <option value="" disabled>Choose your option</option>
@@ -115,7 +167,6 @@ const Vitality = () => {
           </Button>
         </Form>
       </Card>
-    {/* </div> */}
     </Layout>
   );
 };
