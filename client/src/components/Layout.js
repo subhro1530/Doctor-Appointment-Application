@@ -1,10 +1,11 @@
 import React from "react";
 import "../styles/LayoutStyles.css";
 import { adminMenu, userMenu } from "./../Data/data";
-
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Badge, message } from "antd";
+import profileImage from '../images/doctor.png'
+
 const Layout = ({ children }) => {
   const { user } = useSelector((state) => state.user);
   const location = useLocation();
@@ -81,8 +82,9 @@ const Layout = ({ children }) => {
                 >
                   <i class="fa-solid fa-bell"></i>
                 </Badge>
-
-                <Link to="/profile">{user?.name}</Link>
+                
+                <Link ><img className="Profileimage" src={profileImage} alt="profile" />
+                {user?.name}</Link>
               </div>
             </div>
             <div className="body">{children}</div>

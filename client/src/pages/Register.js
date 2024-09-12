@@ -1,13 +1,16 @@
 import React from "react";
 import "../styles/RegiserStyles.css";
-import { Form, Input, message } from "antd";
+import { Form, Input,  message } from "antd";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
+
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  // const { Option } = Select;
+
   //form handler
   const onfinishHandler = async (values) => {
     try {
@@ -26,15 +29,16 @@ const Register = () => {
       message.error("Something Went Wrong");
     }
   };
+
   return (
     <>
-      <div className="form-container ">
+      <div className="form-container">
         <Form
           layout="vertical"
           onFinish={onfinishHandler}
           className="register-form"
         >
-          <h3 className="text-center">Register From</h3>
+          <h3 className="text-center">Register Form</h3>
           <Form.Item label="Name" name="name">
             <Input type="text" required />
           </Form.Item>
@@ -44,8 +48,18 @@ const Register = () => {
           <Form.Item label="Password" name="password">
             <Input type="password" required />
           </Form.Item>
+          {/* <Form.Item label="Age" name="age">
+            <Input type="number" required />
+          </Form.Item>
+          <Form.Item label="Sex" name="sex">
+            <Select required>
+              <Option value="male">Male</Option>
+              <Option value="female">Female</Option>
+              <Option value="other">Other</Option>
+            </Select>
+          </Form.Item> */}
           <Link to="/login" className="m-2">
-            Already user login here
+            Already user? Login here
           </Link>
           <button className="btn btn-primary" type="submit">
             Register

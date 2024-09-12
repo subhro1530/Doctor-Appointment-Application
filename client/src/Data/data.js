@@ -19,6 +19,16 @@ export const userMenu = [
     path: "/profile",
     icon: "fa-solid fa-user",
   },
+  {
+    name: "Vitality",
+    path: "/vitality/:id",
+    icon: "fa-solid fa-notes-medical",
+  },
+  {
+    name: "Health Reports",
+    path: "/health-reports",
+    icon: "fa-solid fa-chart-bar",
+  },
 ];
 
 // admin menu
